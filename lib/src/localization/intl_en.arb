@@ -1,0 +1,10 @@
+{
+    "appName": "bloc",
+    "signout": "Sign out",
+    "language": "Language",
+    "performanceOverlay": "Performance Overlay",
+    "theme":"Theme",
+    "urlConfig": "Url Config",
+    "contactWithAdmin": "Contact with Admin",
+    "dashboard": "Dashboard"
+}

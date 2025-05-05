@@ -1,0 +1,10 @@
+{
+    "appName": "bloc",
+    "signout": "সাইন আউট করুন",
+    "language": "ভাষা",
+    "performanceOverlay": "কর্মক্ষমতা ওভারলে",
+    "theme":"থিম",
+    "urlConfig": "ইউআরএল কনফিগারেশন",
+    "contactWithAdmin": "অ্যাডমিনের সাথে যোগাযোগ করুন।",
+    "dashboard": "ড্যাশবোর্ড"
+}
