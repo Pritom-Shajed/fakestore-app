@@ -96,18 +96,23 @@ class _HomePageState extends State<HomePage> {
 
                 Text('Products', style: context.text.titleMedium),
                 Expanded(
-                  child: ListView.separated(
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (_, index) {
-                      return ProductCard(
-                        onTap: (id) => context.goPushNamed(ProductDetails.name, extra: id),
-                        product: state.products[index],
-                        onTapAddToCart: (product) =>
-                            context.read<cartBloc.CartBloc>().add(cartBloc.AddToCart(product: product.toHive())),
-                      );
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      fetchInitialData();
                     },
-                    separatorBuilder: (_, __) => const SizedBox(height: 10),
-                    itemCount: state.products.length,
+                    child: ListView.separated(
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (_, index) {
+                        return ProductCard(
+                          onTap: (id) => context.goPushNamed(ProductDetails.name, extra: id),
+                          product: state.products[index],
+                          onTapAddToCart: (product) =>
+                              context.read<cartBloc.CartBloc>().add(cartBloc.AddToCart(product: product.toHive())),
+                        );
+                      },
+                      separatorBuilder: (_, __) => const SizedBox(height: 10),
+                      itemCount: state.products.length,
+                    ),
                   ),
                 )
               ],
