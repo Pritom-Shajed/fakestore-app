@@ -9,12 +9,15 @@ class AppRoutes {
   static const String signupRoute = '/signup';
   static const String settingsRoute = '/settings';
   static const String maintenanceBreakRoute = '/maintenance-break';
+  static const String productDetailsRoute = '/product-details';
 
   static const List<String> allRoutes = [
     homeRoute,
     signinRoute,
     signupRoute,
     settingsRoute,
+    maintenanceBreakRoute,
+    productDetailsRoute,
   ];
 
   static final List<String> allAuthRequiredRoutes = [...allRoutes]

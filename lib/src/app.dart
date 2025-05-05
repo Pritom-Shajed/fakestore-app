@@ -8,6 +8,7 @@ import 'package:auth/src/core/utils/theme/light/light_theme.dart';
 import 'package:auth/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:auth/src/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:auth/src/features/home/presentation/home_page.dart';
+import 'package:auth/src/features/product_details/presentation/bloc/product_details_bloc.dart';
 import 'package:auth/src/features/settings/data/models/locale/locale_model.dart';
 import 'package:auth/src/features/settings/data/models/theme/theme_model.dart';
 import 'package:auth/src/features/settings/presentation/bloc/locale/locale_bloc.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<UrlConfigBloc>()),
         BlocProvider(create: (context) => sl<SettingsBloc>()),
         BlocProvider(create: (context) => sl<HomeBloc>()),
+        BlocProvider(create: (context) => sl<ProductDetailsBloc>()),
       ],
       child: Builder(builder: (context) {
         return MaterialApp.router(

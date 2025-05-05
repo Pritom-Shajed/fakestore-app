@@ -1,10 +1,12 @@
 import 'package:auth/src/core/router/router.dart';
+import 'package:auth/src/core/shared/error/app_error_view.dart';
 import 'package:auth/src/core/utils/extensions/extensions.dart';
 import 'package:auth/src/core/utils/loader/app_loaders.dart';
 import 'package:auth/src/core/utils/toasts/app_toasts.dart';
 import 'package:auth/src/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:auth/src/features/home/presentation/widgets/category_card.dart';
 import 'package:auth/src/features/home/presentation/widgets/product_card.dart';
+import 'package:auth/src/features/product_details/presentation/product_details.dart';
 import 'package:auth/src/features/settings/presentation/view/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +22,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    fetchInitialData();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchInitialData();
+    });
   }
 
   fetchInitialData() {
@@ -75,7 +79,9 @@ class _HomePageState extends State<HomePage> {
                   child: ListView.separated(
                     scrollDirection: Axis.vertical,
                     itemBuilder: (_, index) {
-                      return ProductCard(product: state.products[index]);
+                      return ProductCard(
+                          onTap: (id) => context.goPushNamed(ProductDetails.name, extra: id),
+                          product: state.products[index]);
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 10),
                     itemCount: state.products.length,
@@ -84,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               ],
             );
           } else if (state is Error) {
-            return Text(state.errorMessage);
+            return AppErrorView(message: state.errorMessage);
           } else {
             return const SizedBox.shrink();
           }

@@ -7,6 +7,7 @@ import 'package:auth/src/core/utils/logger/logger_helper.dart';
 import 'package:auth/src/features/auth/presentation/view/signin_page.dart';
 import 'package:auth/src/features/auth/presentation/view/signup_page.dart';
 import 'package:auth/src/features/home/presentation/home_page.dart';
+import 'package:auth/src/features/product_details/presentation/product_details.dart';
 import 'package:auth/src/features/settings/presentation/view/settings_view.dart';
 import 'package:auth/src/injector.dart';
 import 'package:flutter/material.dart';
@@ -58,14 +59,23 @@ GoRouter goRouter = GoRouter(
       builder: (_, __) => const SignupPage(),
     ),
     GoRoute(
+      path: AppRoutes.maintenanceBreakRoute,
+      name: MaintenanceBreak.name,
+      builder: (_, __) => const MaintenanceBreak(),
+    ),
+    GoRoute(
       path: AppRoutes.homeRoute,
       name: HomePage.name,
       builder: (_, __) => const HomePage(),
     ),
     GoRoute(
-      path: AppRoutes.maintenanceBreakRoute,
-      name: MaintenanceBreak.name,
-      builder: (_, __) => const MaintenanceBreak(),
+      path: AppRoutes.productDetailsRoute,
+      name: ProductDetails.name,
+      builder: (_, state) {
+        return ProductDetails(
+          productId: state.extra as String,
+        );
+      },
     ),
   ],
   // redirect: authRedirect,
