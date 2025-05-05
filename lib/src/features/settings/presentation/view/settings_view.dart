@@ -1,11 +1,7 @@
-
-import 'package:auth/main.dart';
 import 'package:auth/src/core/configs/constants.dart';
 import 'package:auth/src/features/settings/presentation/view/components/locale_tile.dart';
 import 'package:auth/src/features/settings/presentation/view/components/performance_overlay_tile.dart';
-import 'package:auth/src/features/settings/presentation/view/components/signout_tile.dart';
 import 'package:auth/src/features/settings/presentation/view/components/theme_tile.dart';
-import 'package:auth/src/features/settings/presentation/view/components/url_config_tile.dart';
 import 'package:flutter/material.dart';
 
 class SettingsView extends StatelessWidget {
@@ -57,7 +53,7 @@ class BasicPart extends StatelessWidget {
         children: [
           ThemeTile(),
           LocaleTile(),
-          SignoutTile(),
+          // SignoutTile(),
         ],
       ),
     );
@@ -73,7 +69,7 @@ class AdvancePart extends StatelessWidget {
       child: Column(
         children: [
           PerformanceOverlayTile(),
-          if (!isProduction) URLConfigTile(),
+          // if (!isProduction) URLConfigTile(),
         ],
       ),
     );
