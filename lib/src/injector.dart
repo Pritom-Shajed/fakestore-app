@@ -5,7 +5,12 @@ import 'package:auth/src/features/auth/data/source/remote/auth/auth_remote_servi
 import 'package:auth/src/features/auth/domain/repository/auth.dart';
 import 'package:auth/src/features/auth/domain/usecase/signin.dart';
 import 'package:auth/src/features/auth/domain/usecase/signout.dart';
-import 'package:auth/src/features/home/bloc/bloc/home_bloc.dart';
+import 'package:auth/src/features/home/data/repositories/home_repository.dart';
+import 'package:auth/src/features/home/data/source/remote/home_remote_service.dart';
+import 'package:auth/src/features/home/domain/repositories/home_repository.dart';
+import 'package:auth/src/features/home/domain/usecase/fetch_categories_usecase.dart';
+import 'package:auth/src/features/home/domain/usecase/fetch_products_usecase.dart';
+import 'package:auth/src/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:auth/src/features/settings/data/models/settings_model.dart';
 import 'package:auth/src/features/settings/data/repositories/hive_repository_impl.dart';
 import 'package:auth/src/features/settings/presentation/bloc/locale/locale_bloc.dart';
@@ -30,14 +35,17 @@ Future<void> initialize() async {
 
   // Services
   sl.registerSingleton<AuthRemoteService>(AuthRemoteServiceImpl(sl()));
+  sl.registerSingleton<HomeRemoteService>(HomeRemoteServiceImpl(sl()));
 
   // Repositories
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl()));
+  sl.registerSingleton<HomeRepository>(HomeRepositoryImpl(sl()));
 
   // Usecases
   sl.registerSingleton<SignoutUseCase>(SignoutUseCase(sl()));
-
   sl.registerSingleton<SigninUseCase>(SigninUseCase(sl()));
+  sl.registerSingleton<FetchCategoriesUsecase>(FetchCategoriesUsecase(sl()));
+  sl.registerSingleton<FetchProductsUsecase>(FetchProductsUsecase(sl()));
 
   // Blocs
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl(), sl()));
@@ -47,5 +55,5 @@ Future<void> initialize() async {
   sl.registerFactory<ThemeBloc>(() => ThemeBloc(sl()));
   sl.registerFactory<UrlConfigBloc>(() => UrlConfigBloc(sl()));
   sl.registerFactory<SettingsBloc>(() => SettingsBloc(sl()));
-  sl.registerFactory<HomeBloc>(() => HomeBloc());
+  sl.registerFactory<HomeBloc>(() => HomeBloc(sl(), sl()));
 }

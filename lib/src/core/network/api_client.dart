@@ -16,16 +16,16 @@ class ApiClient {
   AuthStore? authStore;
 
   Future<void> init() async {
-    authStore = Boxes.authStores.get(appName.toCamelWord);
-    log.f('AuthStore: $authStore');
-    log.f('AuthStore: ${authStore?.isAccessTokenValid}');
-    if (authStore != null && !authStore!.isRefreshTokenValid) {
-      await signout();
-      log.e('Automatically signed out due to invalid refresh token.');
-    } else if (authStore != null && !authStore!.isAccessTokenValid) {
-      log.i('Automatically refreshing access token.');
-      await _refreshToken();
-    }
+    // authStore = Boxes.authStores.get(appName.toCamelWord);
+    // log.f('AuthStore: $authStore');
+    // log.f('AuthStore: ${authStore?.isAccessTokenValid}');
+    // if (authStore != null && !authStore!.isRefreshTokenValid) {
+    //   await signout();
+    //   log.e('Automatically signed out due to invalid refresh token.');
+    // } else if (authStore != null && !authStore!.isAccessTokenValid) {
+    //   log.i('Automatically refreshing access token.');
+    //   await _refreshToken();
+    // }
     _listenForAuthStore();
   }
 
