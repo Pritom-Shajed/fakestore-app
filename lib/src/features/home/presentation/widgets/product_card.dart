@@ -1,4 +1,5 @@
 import 'package:auth/src/core/configs/constants.dart';
+import 'package:auth/src/core/shared/button/cart_add_or_remove_btn.dart';
 import 'package:auth/src/core/utils/extensions/extensions.dart';
 import 'package:auth/src/features/home/data/models/product_model.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,17 @@ import 'package:flutter/material.dart';
 class ProductCard extends StatelessWidget {
   final ProductModel product;
   final ValueChanged<String>? onTap;
-  const ProductCard({super.key, required this.product, this.onTap});
+  final ValueChanged<ProductModel>? onTapAddToCart;
+  final ValueChanged<ProductModel>? onTapRemoveFromCart;
+  final bool fromCartPage;
+  const ProductCard({
+    super.key,
+    required this.product,
+    this.onTap,
+    this.onTapRemoveFromCart,
+    this.onTapAddToCart,
+    this.fromCartPage = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +109,22 @@ class ProductCard extends StatelessWidget {
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
+                  ),
+
+                  Row(
+                    spacing: 8,
+                    children: [
+                      if (fromCartPage)
+                        CartAddOrRemoveBtn(
+                          type: CartAddOrRemoveBtnType.remove,
+                          onTap: () => onTapRemoveFromCart?.call(product),
+                        ),
+                      if (!fromCartPage)
+                        CartAddOrRemoveBtn(
+                          type: CartAddOrRemoveBtnType.add,
+                          onTap: () => onTapAddToCart?.call(product),
+                        ),
+                    ],
                   ),
                 ],
               ),

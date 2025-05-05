@@ -6,6 +6,7 @@ import 'package:auth/src/core/shared/page_not_found/page_not_found.dart';
 import 'package:auth/src/core/utils/logger/logger_helper.dart';
 import 'package:auth/src/features/auth/presentation/view/signin_page.dart';
 import 'package:auth/src/features/auth/presentation/view/signup_page.dart';
+import 'package:auth/src/features/cart/presentation/cart_page.dart';
 import 'package:auth/src/features/home/presentation/home_page.dart';
 import 'package:auth/src/features/product_details/presentation/product_details.dart';
 import 'package:auth/src/features/settings/presentation/view/settings_view.dart';
@@ -76,6 +77,11 @@ GoRouter goRouter = GoRouter(
           productId: state.extra as String,
         );
       },
+    ),
+    GoRoute(
+      path: AppRoutes.cartRoute,
+      name: CartPage.name,
+      builder: (_, __) => const CartPage(),
     ),
   ],
   // redirect: authRedirect,

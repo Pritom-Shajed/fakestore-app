@@ -32,6 +32,7 @@ dependencies:
   url_launcher: ^6.3.1
   solar_icon_pack: ^0.2.1
   fluttertoast: ^8.2.12
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,7 @@ dev_dependencies:
   hive_ce_generator: ^1.8.2
   # dart pub run build_runner build --delete-conflicting-outputs
   flutter_lints: ^3.0.0
+  rename_app: ^1.6.3
 
 flutter:
 

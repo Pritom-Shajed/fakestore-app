@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auth/src/features/cart/data/models/product_model_hive.dart';
 import 'package:auth/src/features/home/domain/entity/product_entity.dart';
 
 class ProductModel extends ProductEntity {
@@ -70,6 +71,19 @@ class ProductModel extends ProductEntity {
       description: description ?? this.description,
       category: category ?? this.category,
       image: image ?? this.image,
+    );
+  }
+
+  // To Hive
+
+  ProductModelHive toHive() {
+    return ProductModelHive(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      category: category,
+      image: image,
     );
   }
 }

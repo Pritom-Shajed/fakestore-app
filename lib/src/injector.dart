@@ -5,6 +5,14 @@ import 'package:auth/src/features/auth/data/source/remote/auth/auth_remote_servi
 import 'package:auth/src/features/auth/domain/repository/auth.dart';
 import 'package:auth/src/features/auth/domain/usecase/signin.dart';
 import 'package:auth/src/features/auth/domain/usecase/signout.dart';
+import 'package:auth/src/features/cart/data/repositories/cart_repositories.dart';
+import 'package:auth/src/features/cart/data/sources/local/cart_local_service.dart';
+import 'package:auth/src/features/cart/domain/repositories/cart_repositories.dart';
+import 'package:auth/src/features/cart/domain/usecase/add_to_cart_usecase.dart';
+import 'package:auth/src/features/cart/domain/usecase/clear_cart_usecase.dart';
+import 'package:auth/src/features/cart/domain/usecase/get_cart_items_usecase.dart';
+import 'package:auth/src/features/cart/domain/usecase/remove_from_cart_usecase.dart';
+import 'package:auth/src/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:auth/src/features/home/data/repositories/home_repository.dart';
 import 'package:auth/src/features/home/data/source/remote/home_remote_service.dart';
 import 'package:auth/src/features/home/domain/repositories/home_repository.dart';
@@ -42,11 +50,13 @@ Future<void> initialize() async {
   sl.registerSingleton<AuthRemoteService>(AuthRemoteServiceImpl(sl()));
   sl.registerSingleton<HomeRemoteService>(HomeRemoteServiceImpl(sl()));
   sl.registerSingleton<ProductDetailsRemoteService>(ProductDetailsRemoteServiceImpl(sl()));
+  sl.registerSingleton<CartLocalService>(CartLocalServiceImpl());
 
   // Repositories
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl()));
   sl.registerSingleton<HomeRepository>(HomeRepositoryImpl(sl()));
   sl.registerSingleton<ProductDetailsRepository>(ProductDetailsRepositoryImpl(sl()));
+  sl.registerSingleton<CartRepositories>(CartRepositoriesImpl(sl()));
 
   // Usecases
   sl.registerSingleton<SignoutUseCase>(SignoutUseCase(sl()));
@@ -54,6 +64,10 @@ Future<void> initialize() async {
   sl.registerSingleton<FetchCategoriesUsecase>(FetchCategoriesUsecase(sl()));
   sl.registerSingleton<FetchProductsUsecase>(FetchProductsUsecase(sl()));
   sl.registerSingleton<FetchProductDetailsUsecase>(FetchProductDetailsUsecase(sl()));
+  sl.registerSingleton<GetCartItemsUsecase>(GetCartItemsUsecase(sl()));
+  sl.registerSingleton<AddToCartUsecase>(AddToCartUsecase(sl()));
+  sl.registerSingleton<RemoveFromCartUsecase>(RemoveFromCartUsecase(sl()));
+  sl.registerSingleton<ClearCartUsecase>(ClearCartUsecase(sl()));
 
   // Blocs
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl(), sl()));
@@ -64,4 +78,5 @@ Future<void> initialize() async {
   sl.registerFactory<SettingsBloc>(() => SettingsBloc(sl()));
   sl.registerFactory<HomeBloc>(() => HomeBloc(sl(), sl()));
   sl.registerFactory<ProductDetailsBloc>(() => ProductDetailsBloc(sl()));
+  sl.registerFactory<CartBloc>(() => CartBloc(sl(), sl(), sl(), sl()));
 }

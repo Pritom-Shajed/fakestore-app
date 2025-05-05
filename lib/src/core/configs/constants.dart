@@ -7,7 +7,7 @@ import 'package:flutter/material.dart'
         MainAxisSize,
         RoundedRectangleBorder;
 
-const appName = 'Bloc';
+const appName = 'FakeStoreApi';
 
 const mainEnd = MainAxisAlignment.end;
 const mainStart = MainAxisAlignment.start;

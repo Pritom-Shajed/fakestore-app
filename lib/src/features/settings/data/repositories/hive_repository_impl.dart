@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auth/src/core/configs/get_platform.dart';
 import 'package:auth/src/core/network/model/auth_store.dart';
+import 'package:auth/src/features/cart/data/models/product_model_hive.dart';
 import 'package:auth/src/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
@@ -61,6 +62,7 @@ class HiveRepositoryImpl implements HiveRepository {
     Hive.registerAdapter(LocaleProfileAdapter());
     Hive.registerAdapter(ThemeProfileAdapter());
     Hive.registerAdapter(AppSettingsAdapter());
+    Hive.registerAdapter(ProductModelHiveAdapter());
   }
 
   Future<void> _openAllBoxes() async {
@@ -68,6 +70,7 @@ class HiveRepositoryImpl implements HiveRepository {
     await Hive.openBox<LocaleProfile>(BoxNames.localeProfile);
     await Hive.openBox<ThemeProfile>(BoxNames.themeProfile);
     await Hive.openBox<AppSettings>(BoxNames.appSettings);
+    await Hive.openBox<ProductModelHive>(BoxNames.productsCart);
   }
 
   Future<void> _closeAllBoxes() async {
@@ -75,6 +78,7 @@ class HiveRepositoryImpl implements HiveRepository {
     await Boxes.localeProfile.close();
     await Boxes.themeProfile.close();
     await Boxes.appSettings.close();
+    await Boxes.productsCart.close();
   }
 
   Future<void> _clearAllBoxes() async {
@@ -82,6 +86,7 @@ class HiveRepositoryImpl implements HiveRepository {
     await Boxes.localeProfile.clear();
     await Boxes.themeProfile.clear();
     await Boxes.appSettings.clear();
+    await Boxes.productsCart.clear();
   }
 
   Future<void> _deleteAllBoxes() async {
@@ -89,6 +94,7 @@ class HiveRepositoryImpl implements HiveRepository {
     await Hive.deleteBoxFromDisk(BoxNames.localeProfile);
     await Hive.deleteBoxFromDisk(BoxNames.themeProfile);
     await Hive.deleteBoxFromDisk(BoxNames.appSettings);
+    await Hive.deleteBoxFromDisk(BoxNames.productsCart);
   }
 }
 

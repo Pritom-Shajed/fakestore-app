@@ -10,6 +10,7 @@ class AppRoutes {
   static const String settingsRoute = '/settings';
   static const String maintenanceBreakRoute = '/maintenance-break';
   static const String productDetailsRoute = '/product-details';
+  static const String cartRoute = '/cart';
 
   static const List<String> allRoutes = [
     homeRoute,
@@ -18,6 +19,7 @@ class AppRoutes {
     settingsRoute,
     maintenanceBreakRoute,
     productDetailsRoute,
+    cartRoute
   ];
 
   static final List<String> allAuthRequiredRoutes = [...allRoutes]

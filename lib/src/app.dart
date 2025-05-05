@@ -6,6 +6,7 @@ import 'package:auth/src/core/utils/logger/logger_helper.dart';
 import 'package:auth/src/core/utils/theme/dark/dark_theme.dart';
 import 'package:auth/src/core/utils/theme/light/light_theme.dart';
 import 'package:auth/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:auth/src/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:auth/src/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:auth/src/features/home/presentation/home_page.dart';
 import 'package:auth/src/features/product_details/presentation/bloc/product_details_bloc.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<SettingsBloc>()),
         BlocProvider(create: (context) => sl<HomeBloc>()),
         BlocProvider(create: (context) => sl<ProductDetailsBloc>()),
+        BlocProvider(create: (context) => sl<CartBloc>()),
       ],
       child: Builder(builder: (context) {
         return MaterialApp.router(
